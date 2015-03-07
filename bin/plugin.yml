@@ -1,0 +1,5 @@
+name: PlayerStats
+version: 0.1
+main: me.keeeenion.playerstats.Main
+description: Stores player stats in configs.
+author: keeeenion
