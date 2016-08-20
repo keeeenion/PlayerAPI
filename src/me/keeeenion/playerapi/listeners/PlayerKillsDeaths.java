@@ -1,7 +1,7 @@
-package me.keeeenion.playerstats.listeners;
+package me.keeeenion.playerapi.listeners;
 
-import me.keeeenion.playerstats.methods.EditConf;
-import me.keeeenion.playerstats.methods.GetConf;
+import me.keeeenion.playerapi.methods.EditConf;
+import me.keeeenion.playerapi.methods.GetConf;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;

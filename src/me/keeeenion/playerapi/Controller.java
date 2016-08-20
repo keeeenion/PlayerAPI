@@ -1,9 +1,9 @@
-package me.keeeenion.playerstats;
+package me.keeeenion.playerapi;
 
 import java.io.File;
 
-import me.keeeenion.playerstats.methods.CreateConf;
-import me.keeeenion.playerstats.methods.EditConf;
+import me.keeeenion.playerapi.methods.CreateConf;
+import me.keeeenion.playerapi.methods.EditConf;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -15,11 +15,11 @@ public class Controller implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
-		File playerFile = new File(Main.mainFolder + File.separator + e.getPlayer().getUniqueId() + ".yml");
+		File playerFile = new File(PlayerAPI.mainFolder + File.separator + e.getPlayer().getUniqueId() + ".yml");
 		if (!playerFile.exists()) {
-			if (Main.createConfigs == false) return;
+			if (PlayerAPI.createConfigs == false) return;
 			CreateConf.create(e.getPlayer());
-			Bukkit.getServer().getLogger().info(Main.pluginPrefix + "Created config for player: " + e.getPlayer().getName().toString());
+			Bukkit.getServer().getLogger().info(PlayerAPI.pluginPrefix + "Created config for player: " + e.getPlayer().getName().toString());
 		} else {
 			CreateConf.update(e.getPlayer());
 			EditConf.set(e.getPlayer(), "Player.Online", Boolean.valueOf(true));

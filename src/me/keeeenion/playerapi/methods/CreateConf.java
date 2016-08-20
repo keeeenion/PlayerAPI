@@ -1,9 +1,9 @@
-package me.keeeenion.playerstats.methods;
+package me.keeeenion.playerapi.methods;
 
 import java.io.File;
 import java.io.IOException;
 
-import me.keeeenion.playerstats.Main;
+import me.keeeenion.playerapi.PlayerAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,17 +13,17 @@ import org.bukkit.entity.Player;
 public class CreateConf {
 	
 	public static void create(Player player) {
-		File playersDir = new File(Main.mainFolder);
+		File playersDir = new File(PlayerAPI.mainFolder);
 		if (!playersDir.exists()) {
 			playersDir.mkdir();
 		}
-		File playerFile = new File(Main.mainFolder + File.separator + player.getUniqueId() + ".yml");
+		File playerFile = new File(PlayerAPI.mainFolder + File.separator + player.getUniqueId() + ".yml");
 		FileConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
 		if (!playerFile.exists()) {
 			try {
 				playerFile.createNewFile();
 			} catch (IOException e) {
-				Bukkit.getServer().getLogger().info(Main.pluginPrefix + "There was an error saving" + player + " 's config file");
+				Bukkit.getServer().getLogger().info(PlayerAPI.pluginPrefix + "There was an error saving" + player + " 's config file");
 				e.printStackTrace();
 			}
 			config.set("Player.Online", Boolean.valueOf(player.isOnline()));
@@ -43,13 +43,13 @@ public class CreateConf {
 				config.save(playerFile);
 			} catch (IOException e) {
 				e.printStackTrace();
-				Bukkit.getServer().getLogger().info(Main.pluginPrefix + "There was an error saving" + player + " 's config file");
+				Bukkit.getServer().getLogger().info(PlayerAPI.pluginPrefix + "There was an error saving" + player + " 's config file");
 			}
 		}
 	}
 	
 	public static void update(Player player) {
-	    File playerFile = new File(Main.mainFolder + File.separator + player.getUniqueId() + ".yml");
+	    File playerFile = new File(PlayerAPI.mainFolder + File.separator + player.getUniqueId() + ".yml");
 	    FileConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
 	    if (playerFile.exists()) {
 	    	config.set("Player.OP", Boolean.valueOf(player.isOp()));
@@ -60,7 +60,7 @@ public class CreateConf {
 	    		config.save(playerFile);
 	    	} catch (IOException e) {
 	    		e.printStackTrace();
-	    		Bukkit.getServer().getLogger().info(Main.pluginPrefix + "There was an error saving config file");
+	    		Bukkit.getServer().getLogger().info(PlayerAPI.pluginPrefix + "There was an error saving config file");
 	    	}
 	    }
 	}
